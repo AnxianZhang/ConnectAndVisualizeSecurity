@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddContactController!{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('css/form.css') }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path('show_contact') }}">My contacts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('add_contact') }}">Add Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('mailer') }}">Contact us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sponsorized by Symfony</a>
+        </li>
+        {#<li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>#}
+    </ul>
+</nav>
+
+<div class="wrapper">
+    <h3>Add your contact</h3>
+    {{ form_start(form) }}
+    {{ form_row(form.fname) }}
+    {{ form_row(form.lname) }}
+    {{ form_row(form.email) }}
+
+    {% if incorrect is defined %}
+    <p style="color: #DC356F; margin-top: 1em;">{{ incorrect }}</p>
+    {% endif %}
+
+    <div id="form-button">
+        {{ form_widget(form.send) }}
+    </div>
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

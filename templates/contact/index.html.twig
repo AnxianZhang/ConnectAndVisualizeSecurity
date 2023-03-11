@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('css/contact.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block body %}
+<nav>
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ path('show_contact') }}">My contacts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('add_contact') }}">Add Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('mailer') }}">Contact us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sponsorized by Symfony</a>
+        </li>
+        {#<li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>#}
+    </ul>
+</nav>
+
+<div class="example-wrapper">
+    <h1>Hello {{ user.fname }} {{ user.lname }}!</h1>
+    <br>
+
+    
+    {% if contacts|length == 0 %}
+    <h2>You do not have contact</h2>
+    {% else %}
+    <h2>Your contact(s):</h2>
+    <table class="table ">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">nom</th>
+                <th scope="col">prenom</th>
+                <th scope="col">email</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{contact.fname}}</td>
+                <td>{{contact.lname}}</td>
+                <td>{{contact.email}}</td>
+                <td class="btn-col">
+                    <a href="{{path('remove_contact', {contactId: contact.id})}}" class="btn-circle del-btn">
+                        <img class="icon" src="{{ asset('images/remove.png') }}" alt="remove btn">
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {#<button id="add-contact-btn" class="btn btn-primary">Add contact(s)</button>#}
+</div>
+{% endblock %}
