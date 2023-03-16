@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
+use App\Entity\ContactUsTask;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use App\Form\ContactUsType;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 
 class UtilisateurController extends AbstractController
 {
@@ -80,10 +84,32 @@ class UtilisateurController extends AbstractController
     }
 
     #[Route(path: '/user/mailer', name: 'mailer')]
-    public function userMailer(): Response
+    public function userMailer(MailerInterface $mailer, SessionInterface $session, Request $request): Response
     {
-        return $this->render('user/mailer.html.twig', [
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
 
+        $connectedUser = $this->getUser();
+
+        $mailTask = new ContactUsTask();
+        $form = $this->createForm(ContactUsType::class, $mailTask);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $formDatas = $form->getData();
+
+            $email = (new Email())
+                ->from($connectedUser->getEmail())
+                ->to('gadanxianzhang2@gmail.com')
+                ->subject($formDatas->getSubject())
+                ->text($formDatas->getText())
+                ->html('<p>See Twig integration for better HTML integration!</p>');
+
+                
+            $mailer->send($email);
+        }
+
+        return $this->render('user/mailer.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
