@@ -28,7 +28,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport // gere l'auth des utilisateurs; on aura l'user le pass et token
     {
         $username = $request->request->get('username', '');
-
+        
         $request->getSession()->set(Security::LAST_USERNAME, $username); // ajoute le dernier user qui a été co
 
         return new Passport( 

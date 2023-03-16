@@ -21,9 +21,8 @@ class ContactController extends AbstractController
     #[Route('/user/contact', name: 'show_contact')]
     public function index(ContactRepository $contactRepo): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
         $user = $this->getUser();
         
         $userId = $user->getId();
@@ -38,7 +37,8 @@ class ContactController extends AbstractController
 
     #[Route('user/contact/addcontact', name: 'add_contact')]
     public function addContact(Request $request, ManagerRegistry $doctrine, UtilisateurRepository $userRepo, ContactRepository $contactRepo): Response{
-        
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
         $new = new Utilisateur();
 
         $user = $this->getUser();
@@ -92,6 +92,8 @@ class ContactController extends AbstractController
 
     #[Route('user/contact/removecontact/{contactId}', name: 'remove_contact')]
     public function removeContact($contactId, ContactRepository $contactRepo): Response{
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
         $contact = $contactRepo
             ->findOneBy(
             ['idContact' => $contactId],
