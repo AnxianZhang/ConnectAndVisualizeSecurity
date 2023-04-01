@@ -2,7 +2,7 @@
  
 ## Les membres du projet:
 - Lin Xingtong
-- Zhang Anxian
+- Zhang Anxian  <br>
 --> Groupe 201
 
 # Quels sont les différents services que nous avons mis en place ?
