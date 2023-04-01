@@ -13,7 +13,7 @@
 - "user/mailer": page de qui permet d'envoyer un mail aux développeurs <br>
 - "user/logout": deconnexion de l'utilisateur <br>
 
-# Quels sont les rôles disponibles ?
+# Quels sont les rôles qui sont attribués aux utilisateurs ?
 Nous avons pour le moment que 2 rôles, ROLE_USER et ROLE_ADMIN.
 Le rôle ROLE_USER est attribué à tout le monde, contrairement au rôle ROLE_ADMIN qui n'est qu'attribué aux développeurs de l'application, c'est à dire Zhang Anxian et Lin Xingtong.
 
