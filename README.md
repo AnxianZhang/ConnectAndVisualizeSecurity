@@ -1,9 +1,8 @@
 # ConnectAndVisualizeSecurity
  
-## Les membres du projet:
-- Lin Xingtong
+## Les membres du projet (groupe 201):
+- Lin Xingtong 
 - Zhang Anxian  <br>
---> Groupe 201
 
 # Quels sont les différents services que nous avons mis en place ?
 - "/": la page de connexion <br>
