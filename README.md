@@ -6,13 +6,13 @@
 --> Groupe 201
 
 # Quels sont les différents services que nous avons mis en place ?
-"/": la page de connexion <br>
-"user/register": page d'inscription <br>
-"user/contact": page de contact de l'utilisateur connecté <br>
-"user/contact/removecontact/{contactId}": suppression d'un contact <br>
-"user/contact/addcontact": page d'ajout de contacts <br>
-"user/mailer": page de qui permet d'envoyer un mail aux développeurs <br>
-"user/logout": deconnexion de l'utilisateur <br>
+- "/": la page de connexion <br>
+- "user/register": page d'inscription <br>
+- "user/contact": page de contact de l'utilisateur connecté <br>
+- "user/contact/removecontact/{contactId}": suppression d'un contact <br>
+- "user/contact/addcontact": page d'ajout de contacts <br>
+- "user/mailer": page de qui permet d'envoyer un mail aux développeurs <br>
+- "user/logout": deconnexion de l'utilisateur <br>
 
 # Quels sont les rôles dispognible ?
 Nous avons pour le moment que 2 rôles, ROLE_USER et ROLE_ADMIN.
